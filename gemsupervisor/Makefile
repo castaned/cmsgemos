@@ -2,7 +2,6 @@
 # Makefile for gemsupervisor package
 #
 
-#Project=gem
 Project=cmsgemos
 ShortProject=gem
 Package=gemsupervisor
@@ -21,7 +20,6 @@ Sources+=tbutils/VFAT2XMLParser.cc
 Sources+=tbutils/GEMTBUtil.cc tbutils/ThresholdScan.cc tbutils/LatencyScan.cc 
 Sources+=GEMSupervisor.cc GEMSupervisorWeb.cc GEMSupervisorMonitor.cc GEMGlobalState.cc
 #Sources+=tbutils/ADCScan.cc
-#Sources+=GEMGLIBSupervisorWeb.cc
 
 DynamicLibrary=gemsupervisor
 
@@ -44,8 +42,6 @@ DependentLibraries+=cactus_uhal_uhal cactus_amc13_amc13
 DependentLibraries+=gemhardware gemutils gemreadout
 
 include $(XDAQ_ROOT)/config/Makefile.rules
-#include $(BUILD_HOME)/$(Project)/config/mfRPM_gem.rules
-#include $(XDAQ_ROOT)/config/mfRPM.rules
 include $(BUILD_HOME)/$(Project)/config/mfRPM_gem.rules
 
 print-env:

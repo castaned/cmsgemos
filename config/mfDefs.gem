@@ -35,7 +35,6 @@ UserCFlags+=${GCC44Flags}
 #UserCFlags+=${GCC48Flags}
 #UserCFlags+=${GCC49Flags}
 UserCCFlags =${UserCFlags}
-#UserCCFlags =-std=c++0x -std=gnu++0x -DGIT_VERSION=\"$(GIT_VERSION)\" -DGEMDEVELOPER=\"$(GEMDEVELOPER)\"
 
 UserStaticLinkFlags  =
 UserDynamicLinkFlags =
