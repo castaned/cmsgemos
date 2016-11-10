@@ -238,7 +238,7 @@ void gem::hw::amc13::AMC13Manager::setDisplayLevel(xgi::Input *in, xgi::Output *
 void gem::hw::amc13::AMC13Manager::updateStatus(xgi::Input *in, xgi::Output *out)
   throw (xgi::exception::Exception)
 {
-  dynamic_cast<AMC13ManagerWeb*>(p_gemWebInterface)->updateStatus(out);
+  // dynamic_cast<AMC13ManagerWeb*>(p_gemWebInterface)->updateStatus(out);
 }
 
 //state transitions
