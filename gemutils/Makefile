@@ -36,6 +36,9 @@ UserCCFlags +=$(MySQLCFLAGS)
 LibraryDirs+=$(MySQLLIBS)
 LibraryDirs+=$(MySQLGLIBS)
 
+IncludeDirs+=$(BUILD_HOME)/$(Project)/gemhardware/include
+
+
 DependentLibraryDirs+=$(BUILD_HOME)/$(Project)/gemhardware/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM)
 
 UserDynamicLinkFlags+=$(MySQLLIBS)
