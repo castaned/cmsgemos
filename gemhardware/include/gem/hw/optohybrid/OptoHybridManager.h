@@ -13,6 +13,7 @@
 #include "gem/utils/soap/GEMSOAPToolBox.h"
 #include "gem/utils/exception/Exception.h"
 
+#include "gem/utils/db/GEMDBAccess.h"
 
 namespace gem {
   namespace hw {
