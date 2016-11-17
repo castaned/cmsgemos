@@ -7,7 +7,15 @@
 #include "xdaq/WebApplication.h"
 #include "xdata/UnsignedLong.h"
 #include "xdata/Table.h"
-#include "gem/hw/vfat/HwVFAT2.h"
+//#include "gem/hw/vfat/HwVFAT2.h"
+
+#include "gem/hw/vfat/VFAT2Settings.h"
+#include "gem/hw/vfat/VFAT2SettingsEnums.h"
+#include "gem/hw/vfat/VFAT2Enums2Strings.h"
+#include "gem/hw/vfat/VFAT2Strings2Enums.h"
+//#include "gem/hw/vfat/VFAT2EnumStrings.h"
+
+#include "gem/hw/vfat/exception/Exception.h"
 
 
 namespace gem {
@@ -22,9 +30,7 @@ namespace gem {
 	GEMDBtoVFATobj();
 	~GEMBDtoVFATobj();
 	
-	gem::hw::vfat::VFAT2ControlParams VFAT2Params;
-	
-	VFAT2Params setVFATparams(xdata::Table VFATDB);
+	gem::hw::vfat::VFAT2ControlParams setVFATParams(xdata::Table& VFATDB);
 	
       }
     }
