@@ -37,7 +37,7 @@ namespace gem {
 	// void getDefinition(const std::string &connectionID,xdata::Table &results) throw (xcept::Exception);
 	// void Default(xgi::Input * in, xgi::Output * out ) throw (xgi::exception::Exception);
 	
-      };
+      }
     }
   }
 }      
