@@ -37,6 +37,9 @@ namespace gem {
 
           virtual ~OptoHybridManager();
 
+	  xoap::MessageReference sendSOAPMessage(xoap::MessageReference &message) throw (xcept::Exception);
+
+	  
         protected:
           virtual void init();
 

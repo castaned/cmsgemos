@@ -143,6 +143,40 @@ void gem::hw::optohybrid::OptoHybridManager::CommonVFATSettings::registerFields(
   bag->addField("VThreshold2",       &VThreshold2);
 }
 
+
+
+xoap::MessageReference gem::hw::optohybrid::OptoHybridManager::sendSOAPMessage(xoap::MessageReference &message) throw (xcept::Exception) {
+  xoap::MessageReference reply;
+  
+  std::cout << "Message: " << std::endl;
+  message->writeTo(std::cout);
+  std::cout << std::endl;
+  
+  try {
+    xdaq::ApplicationDescriptor * tstoreDescriptor = getApplicationContext()->getDefaultZone()->getApplicationDescriptor("tstore::TStore",0);
+    xdaq::ApplicationDescriptor * tstoretestDescriptor=this->getApplicationDescriptor();
+    reply = getApplicationContext()->postSOAP(message,*tstoretestDescriptor, *tstoreDescriptor);
+  } 
+  catch (xdaq::exception::Exception& e) {
+    LOG4CPLUS_ERROR(this->getApplicationLogger(),xcept::stdformat_exception_history(e));
+    XCEPT_RETHROW(xcept::Exception, "Could not post SOAP message. ", e);
+  }
+  
+  xoap::SOAPBody body = reply->getSOAPPart().getEnvelope().getBody();
+  
+  std::cout << std::endl << "Response: " << std::endl;
+  reply->writeTo(std::cout);
+  std::cout << std::endl;
+  
+  if (body.hasFault()) {
+    XCEPT_RAISE (xcept::Exception, body.getFault().getFaultString());
+  }
+  return reply;
+}
+
+
+
+
 gem::hw::optohybrid::OptoHybridManager::OptoHybridManager(xdaq::ApplicationStub* stub) :
   gem::base::GEMFSMApplication(stub)
 {
@@ -355,6 +389,19 @@ void gem::hw::optohybrid::OptoHybridManager::initializeAction()
 void gem::hw::optohybrid::OptoHybridManager::configureAction()
   throw (gem::hw::optohybrid::exception::Exception)
 {
+
+  DEBUG("Accessing DB information");
+  gem::utils::db::GEMDBAccess GEMDBObj;   // Database object
+  xoap::MessageReference ViewInfo = GEMDBObj.getViewInfo("VFAT2");   // select specific view
+  xoap::MessageReference ConnectionInfo = sendSOAPMessage(ViewInfo); 
+  std::string connectionID = GEMDBObj.connect(ConnectionInfo);
+  xoap::MessageReference responsemsg = GEMDBObj.SetViewInfo("VFAT2",connectionID);
+  xoap::MessageReference responseInfo = sendSOAPMessage(responsemsg);
+  
+
+
+  
+  
   DEBUG("OptoHybridManager::configureAction");
   //will the manager operate for all connected optohybrids, or only those connected to certain GLIBs?
   for (unsigned slot = 0; slot < MAX_AMCS_PER_CRATE; ++slot) {
