@@ -393,13 +393,13 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   DEBUG("Accessing DB information");
   gem::utils::db::GEMDBAccess GEMDBObj;   // Database object
 
-  xoap::MessageReference ViewInfoVFAT = GEMDBObj.getViewInfo("VFAT2");   // view for VFAT2 config
+  xoap::MessageReference ViewInfoVFAT = GEMDBObj.getViewInfo("VFAT2");  // view for VFAT2 config
   xoap::MessageReference ConnectionInfoVFAT = sendSOAPMessage(ViewInfoVFAT); 
   std::string connectionIDVFAT = GEMDBObj.connect(ConnectionInfoVFAT);
   xoap::MessageReference responsemsgVFAT = GEMDBObj.SetViewInfo("VFAT2",connectionIDVFAT);
   xoap::MessageReference responseInfoVFAT = sendSOAPMessage(responsemsgVFAT);
 
-  xoap::MessageReference ViewInfoGEB = GEMDBObj.getViewInfo("TGEB");   // view for GEB config
+  xoap::MessageReference ViewInfoGEB = GEMDBObj.getViewInfo("TGEB");    // view for GEB config
   xoap::MessageReference ConnectionInfoGEB = sendSOAPMessage(ViewInfoGEB); 
   std::string connectionIDGEB = GEMDBObj.connect(ConnectionInfoGEB);
   xoap::MessageReference responsemsgGEB = GEMDBObj.SetViewInfo("TGEB",connectionIDGEB);
@@ -417,6 +417,41 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   xoap::MessageReference disconnectmsgGEB = GEMDBObj.disconnectmsg(connectionIDGEB); // disconnect from DB
   sendSOAPMessage(disconnectmsgGEB);
 
+  
+  for(unsigned long rowIndex=0;rowIndex<GEBParamDB.getRowCount();rowIndex++){
+    std::string vfatid=GEBParamDB.getValueAt(rowIndex,"VFAT")->toString();
+    std::string vfatslot=GEBParamDB.getValueAt(rowIndex,"VFAT_POSN")->toString();
+    *out<<"<td>"<<"VFAT ID: "<<vfatid<<" VFAT slot "<<vfatslot<<"</td>"<<std::endl;
+  }
+  
+  std::vector<std::string> columns=VFAT2ParamDB.getColumns();
+  for(std::vector<std::string>::iterator column=columns.begin(); column!=columns.end(); ++column){
+    std::string vfatconf=VFAT2ParamDB.getValueAt(1,*column)->toString();
+    *out<<"<td>"<<"VFAT ID :"<<vfatconf<<"</td>"<<std::endl;
+  }
+  
+
+  // std::vector<std::string> columns=GEMDBObj.getColumns();
+  //   for (unsigned long rowIndex=0;rowIndex<results.getRowCount();rowIndex++ ) {
+  //     //      if(results.getValueAt(rowIndex,"VFAT")->toString() == myParameter_.toString()){
+  // 	LOG4CPLUS_INFO(this->getApplicationLogger(),"\n");
+  // 	*out<<" <tr>Index "<<rowIndex<<"</tr>"<<std::endl;
+  // 	for (std::vector<std::string>::iterator column=columns.begin(); column!=columns.end(); ++column) {
+  // 	  std::string value=results.getValueAt(rowIndex,*column)->toString();
+  // 	  LOG4CPLUS_INFO(this->getApplicationLogger(),*column+": "+value);
+  // 	  *out<<"<tr>"<<std::endl;
+  // 	  *out<<"<td>"<<*column<<":  "<<value<<"</td>"<<std::endl;
+  // 	  *out<<"</tr>"<<std::endl;
+  // 	}
+  //     }
+  //   }
+  //   *out << "</tr>" << std::endl;
+  //   *out << cgicc::table() <<std::endl;;
+  //   *out << "</div>" << std::endl;
+  //   *out << cgicc::br()<< std::endl;
+  //   *out << cgicc::hr()<< std::endl;    
+    
+  
 
     
   DEBUG("OptoHybridManager::configureAction");
