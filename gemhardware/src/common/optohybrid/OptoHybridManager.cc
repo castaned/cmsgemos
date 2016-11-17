@@ -392,16 +392,30 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
 
   DEBUG("Accessing DB information");
   gem::utils::db::GEMDBAccess GEMDBObj;   // Database object
-  xoap::MessageReference ViewInfo = GEMDBObj.getViewInfo("VFAT2");   // select specific view
-  xoap::MessageReference ConnectionInfo = sendSOAPMessage(ViewInfo); 
-  std::string connectionID = GEMDBObj.connect(ConnectionInfo);
-  xoap::MessageReference responsemsg = GEMDBObj.SetViewInfo("VFAT2",connectionID);
-  xoap::MessageReference responseInfo = sendSOAPMessage(responsemsg);
+
+  xoap::MessageReference ViewInfoVFAT = GEMDBObj.getViewInfo("VFAT2");   // view for VFAT2 config
+  xoap::MessageReference ConnectionInfoVFAT = sendSOAPMessage(ViewInfoVFAT); 
+  std::string connectionIDVFAT = GEMDBObj.connect(ConnectionInfoVFAT);
+  xoap::MessageReference responsemsgVFAT = GEMDBObj.SetViewInfo("VFAT2",connectionIDVFAT);
+  xoap::MessageReference responseInfoVFAT = sendSOAPMessage(responsemsgVFAT);
+
+  xoap::MessageReference ViewInfoGEB = GEMDBObj.getViewInfo("TGEB");   // view for GEB config
+  xoap::MessageReference ConnectionInfoGEB = sendSOAPMessage(ViewInfoGEB); 
+  std::string connectionIDGEB = GEMDBObj.connect(ConnectionInfoGEB);
+  xoap::MessageReference responsemsgGEB = GEMDBObj.SetViewInfo("TGEB",connectionIDGEB);
+  xoap::MessageReference responseInfoGEB = sendSOAPMessage(responsemsgGEB);
   
+  xdata::Table VFAT2ParamDB; 
+  GEMDBObj.SetView(responseInfoVFAT,VFAT2ParamDB);
+  
+  xdata::Table GEBParamDB; 
+  GEMDBObj.SetView(responseInfoGEB,GEBParamDB);
+  
+  xoap::MessageReference disconnectmsg = GEMDBObj.disconnectmsg(connectionID); // disconnect from DB
+  sendSOAPMessage(disconnectmsg);
 
 
-  
-  
+    
   DEBUG("OptoHybridManager::configureAction");
   //will the manager operate for all connected optohybrids, or only those connected to certain GLIBs?
   for (unsigned slot = 0; slot < MAX_AMCS_PER_CRATE; ++slot) {
