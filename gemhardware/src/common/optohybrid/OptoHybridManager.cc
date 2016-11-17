@@ -411,8 +411,11 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   xdata::Table GEBParamDB; 
   GEMDBObj.SetView(responseInfoGEB,GEBParamDB);
   
-  xoap::MessageReference disconnectmsg = GEMDBObj.disconnectmsg(connectionID); // disconnect from DB
-  sendSOAPMessage(disconnectmsg);
+  xoap::MessageReference disconnectmsgVFAT = GEMDBObj.disconnectmsg(connectionIDVFAT); // disconnect from DB
+  sendSOAPMessage(disconnectmsgVFAT);
+
+  xoap::MessageReference disconnectmsgGEB = GEMDBObj.disconnectmsg(connectionIDGEB); // disconnect from DB
+  sendSOAPMessage(disconnectmsgGEB);
 
 
     
