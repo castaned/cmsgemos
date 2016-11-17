@@ -1,3 +1,4 @@
+#include <gem/utils/db/GEMDBtoVFATobj.h>
 #include "toolbox/TimeInterval.h"
 #include "tstore/client/AttachmentUtils.h"
 #include "tstore/client/Client.h"
