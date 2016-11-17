@@ -421,13 +421,13 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   for(unsigned long rowIndex=0;rowIndex<GEBParamDB.getRowCount();rowIndex++){
     std::string vfatid=GEBParamDB.getValueAt(rowIndex,"VFAT")->toString();
     std::string vfatslot=GEBParamDB.getValueAt(rowIndex,"VFAT_POSN")->toString();
-    *out<<"<td>"<<"VFAT ID: "<<vfatid<<" VFAT slot "<<vfatslot<<"</td>"<<std::endl;
+    DEBUG("VFAT ID: "<<vfatid<<" VFAT slot "<<vfatslot);
   }
   
   std::vector<std::string> columns=VFAT2ParamDB.getColumns();
   for(std::vector<std::string>::iterator column=columns.begin(); column!=columns.end(); ++column){
     std::string vfatconf=VFAT2ParamDB.getValueAt(1,*column)->toString();
-    *out<<"<td>"<<"VFAT ID :"<<vfatconf<<"</td>"<<std::endl;
+    DEBUG("VFAT ID :"<<vfatconf);
   }
   
 
