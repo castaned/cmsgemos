@@ -24,6 +24,8 @@ Sources+=db/GEMDBtoVFATobj.cc
 DynamicLibrary=gemutils
 
 IncludeDirs+=$(BUILD_HOME)/$(Project)/$(Package)/include
+IncludeDirs+=$(BUILD_HOME)/$(Project)/gemhardware/include
+DependentLibraryDirs+=$(BUILD_HOME)/$(Project)/gemhardware/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM)
 
 # MySQL Config
 MySQLCFLAGS = $(shell mysql_config --cflags)
@@ -35,10 +37,8 @@ UserCCFlags +=$(MySQLCFLAGS)
 
 LibraryDirs+=$(MySQLLIBS)
 LibraryDirs+=$(MySQLGLIBS)
-
-IncludeDirs+=$(BUILD_HOME)/$(Project)/gemhardware/include
-DependentLibraryDirs+=$(BUILD_HOME)/$(Project)/gemhardware/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM)
 LibraryDirs+=$(BUILD_HOME)/$(Project)/gemhardware/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM)
+
 DependentLibraries+=gemhardware
 
 UserDynamicLinkFlags+=$(MySQLLIBS)
