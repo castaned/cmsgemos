@@ -37,9 +37,9 @@ LibraryDirs+=$(MySQLLIBS)
 LibraryDirs+=$(MySQLGLIBS)
 
 IncludeDirs+=$(BUILD_HOME)/$(Project)/gemhardware/include
-
-
 DependentLibraryDirs+=$(BUILD_HOME)/$(Project)/gemhardware/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM)
+LibraryDirs+=$(BUILD_HOME)/$(Project)/gemhardware/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM)
+DependentLibraries+=gemhardware
 
 UserDynamicLinkFlags+=$(MySQLLIBS)
 
