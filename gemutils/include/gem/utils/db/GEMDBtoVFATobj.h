@@ -28,14 +28,13 @@ namespace gem {
       public:
 	
 	GEMDBtoVFATobj();
-	~GEMBDtoVFATobj();
+	~GEMDBtoVFATobj();
 	
-	gem::hw::vfat::VFAT2ControlParams setVFATParams(xdata::Table& VFATDB);
-	
-      }
+      protected:
+	gem::hw::vfat::VFAT2ControlParams params;
+	//	m_vfat2params setVFATParams(xdata::Table& VFATDB);
+      };
     }
   }
 }
-  
-	  
 #endif
