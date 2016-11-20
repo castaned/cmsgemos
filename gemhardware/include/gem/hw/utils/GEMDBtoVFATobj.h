@@ -29,10 +29,10 @@ namespace gem {
 	
 	GEMDBtoVFATobj();
 	~GEMDBtoVFATobj();
-	
+
       protected:
-	gem::hw::vfat::VFAT2ControlParams  VFAT2Params;
-	VFAT2Params  setVFATParams(xdata::Table& VFATDB);
+	void getVFATparamfromDB(const gem::hw::vfat::VFAT2ControlParams &params, xdata::Table &vfatdb);
+	
       };
     }
   }

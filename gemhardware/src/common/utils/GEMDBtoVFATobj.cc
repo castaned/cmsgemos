@@ -16,7 +16,7 @@ gem::utils::db::GEMDBtoVFATobj::~GEMDBtoVFATobj()
 }
 
 
-VFAT2Params gem::utils::db::GEMDBtoVFATobj::setVFATparams(xdata::Table VFATDB){ 
+void gem::utils::db::GEMDBtoVFATobj::getVFATparamfromDB(const gem::hw::vfat::VFAT2ControlParams &VFAT2Params, xdata::Table &VFATDB){ 
 
   
   VFAT2Params.trigMode  = gem::hw::vfat::StringToTriggerMode.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR0_TRGMODE")->toString()));
