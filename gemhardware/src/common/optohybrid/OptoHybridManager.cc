@@ -431,8 +431,9 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
     DEBUG("VFAT CONFIG :"<<vfatconf);
   }
 
+  gem::hw::utils::GEMDBtoVFATobj DBtoVFAT;   // Database object
 
-  gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(vfatparam,VFAT2ParamDB);
+  DBtoVFAT.getVFATparamfromDB(vfatparam,VFAT2ParamDB);
 
 
   // std::vector<std::string> columns=GEMDBObj.getColumns();

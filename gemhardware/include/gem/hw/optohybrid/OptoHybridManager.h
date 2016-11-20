@@ -45,6 +45,7 @@ namespace gem {
 
 	  xoap::MessageReference sendSOAPMessage(xoap::MessageReference &message) throw (xcept::Exception);
 
+	  
 	  gem::hw::vfat::VFAT2ControlParams  vfatparam;
 
 	  
