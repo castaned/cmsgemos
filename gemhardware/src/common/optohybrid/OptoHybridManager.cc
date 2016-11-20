@@ -25,7 +25,7 @@
 #include "xoap/AttachmentPart.h"
 #include "xoap/domutils.h"
 
-#include "gem/hw/utils/GEMDBtoVFAT2obj.h"
+#include "gem/hw/utils/GEMDBtoVFATobj.h"
 
 XDAQ_INSTANTIATOR_IMPL(gem::hw::optohybrid::OptoHybridManager);
 
