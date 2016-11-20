@@ -19,7 +19,7 @@ Sources =version.cc
 Sources+=Lock.cc gemXMLparser.cc GEMRegisterUtils.cc
 Sources+=soap/GEMSOAPToolBox.cc
 Sources+=db/GEMDatabaseUtils.cc
-Sources+=db/GEMDBtoVFATobj.cc
+#Sources+=db/GEMDBtoVFATobj.cc
 
 DynamicLibrary=gemutils
 
