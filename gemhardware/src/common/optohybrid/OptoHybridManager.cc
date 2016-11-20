@@ -427,7 +427,7 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   std::vector<std::string> columns=VFAT2ParamDB.getColumns();
   for(std::vector<std::string>::iterator column=columns.begin(); column!=columns.end(); ++column){
     std::string vfatconf=VFAT2ParamDB.getValueAt(1,*column)->toString();
-    DEBUG("VFAT ID :"<<vfatconf);
+    DEBUG("VFAT CONFIG :"<<vfatconf);
   }
   
 
