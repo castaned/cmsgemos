@@ -31,7 +31,7 @@ namespace gem {
 	~GEMDBtoVFATobj();
 
       protected:
-	void getVFATparamfromDB(const gem::hw::vfat::VFAT2ControlParams &params, xdata::Table &vfatdb);
+	void getVFATparamfromDB(gem::hw::vfat::VFAT2ControlParams &params, xdata::Table &vfatdb);
 	
       };
     }
