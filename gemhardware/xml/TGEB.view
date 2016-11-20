@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<tstore:configuration xmlns:tstore="urn:xdaq-tstore:1.0">
+
+  <tstore:view id="urn:tstore-view-SQL:TGEB">
+    <tstore:connection dbname="int2r_nolb" xmlns:tstore="urn:xdaq-tstore:1.0"/> 
+    <!--    <tstore:connection dbname="devdb11" xmlns:tstore="urn:xdaq-tstore:1.0"/>   -->
+    <sql:query xmlns:sql="urn:tstore-view-SQL" name="TGEB">
+      <![CDATA[SELECT *
+               FROM CMS_GEM_MUON_VIEW.V_CMS_GEM_CHMBER_VFATS_VIEW]]>
+    </sql:query>
+  </tstore:view>
+</tstore:configuration>
