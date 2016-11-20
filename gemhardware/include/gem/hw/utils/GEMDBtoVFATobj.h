@@ -19,8 +19,8 @@
 
 
 namespace gem {
-  namespace utils {
-    namespace db { 
+  namespace hw {
+    namespace utils {
       
       class GEMDBtoVFATobj
       {

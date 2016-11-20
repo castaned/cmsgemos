@@ -13,16 +13,16 @@
 #include <boost/format.hpp>
 
 
-gem::utils::db::GEMDBtoVFATobj::GEMDBtoVFATobj()
+gem::hw::utils::GEMDBtoVFATobj::GEMDBtoVFATobj()
 {
 }
 
-gem::utils::db::GEMDBtoVFATobj::~GEMDBtoVFATobj()
+gem::hw::utils::GEMDBtoVFATobj::~GEMDBtoVFATobj()
 {
 }
 
 
-void gem::utils::db::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2ControlParams &VFAT2Params, xdata::Table &VFATDB){ 
+void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2ControlParams &VFAT2Params, xdata::Table &VFATDB){ 
 
   
   VFAT2Params.trigMode  = gem::hw::vfat::StringToTriggerMode.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR0_TRGMODE")->toString()));
