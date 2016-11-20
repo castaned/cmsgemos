@@ -432,7 +432,7 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   }
 
   gem::hw::utils::GEMDBtoVFATobj DBtoVFAT;   // Database object
-
+  
   DBtoVFAT.getVFATparamfromDB(vfatparam,VFAT2ParamDB);
 
 
@@ -521,7 +521,7 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
           if (chip->second)
             INFO("VFAT found in GEB slot " << std::setw(2) << (int)chip->first << " has ChipID "
                  << "0x" << std::hex << std::setw(4) << chip->second << std::dec);
-	//	         gem::hw::vfat::HwVFAT2& vfatDevice = optohybrid->getVFATDevice(chip->first);
+	         gem::hw::vfat::HwVFAT2& vfatDevice = optohybrid->getVFATDevice(chip->first);
           else
             INFO("No VFAT found in GEB slot " << std::setw(2) << (int)chip->first);
 
