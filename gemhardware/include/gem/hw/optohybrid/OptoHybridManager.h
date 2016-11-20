@@ -15,6 +15,11 @@
 
 #include "gem/utils/db/GEMDBAccess.h"
 
+#include "gem/hw/vfat/VFAT2Settings.h"
+#include "gem/hw/vfat/VFAT2SettingsEnums.h"
+#include "gem/hw/vfat/VFAT2Enums2Strings.h"
+#include "gem/hw/vfat/VFAT2Strings2Enums.h"
+
 namespace gem {
   namespace hw {
     namespace optohybrid {
@@ -39,6 +44,8 @@ namespace gem {
           virtual ~OptoHybridManager();
 
 	  xoap::MessageReference sendSOAPMessage(xoap::MessageReference &message) throw (xcept::Exception);
+
+	  gem::hw::vfat::VFAT2ControlParams  vfatparam;
 
 	  
         protected:

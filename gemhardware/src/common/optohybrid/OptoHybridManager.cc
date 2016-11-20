@@ -25,6 +25,7 @@
 #include "xoap/AttachmentPart.h"
 #include "xoap/domutils.h"
 
+#include "gem/hw/utils/GEMDBtoVFAT2obj.h"
 
 XDAQ_INSTANTIATOR_IMPL(gem::hw::optohybrid::OptoHybridManager);
 
@@ -429,7 +430,10 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
     std::string vfatconf=VFAT2ParamDB.getValueAt(1,*column)->toString();
     DEBUG("VFAT CONFIG :"<<vfatconf);
   }
-  
+
+
+  gem::utils::db::GEMDBtoVFATobj::getVFATparamfromDB(vfatparam,VFAT2PAramDB);
+
 
   // std::vector<std::string> columns=GEMDBObj.getColumns();
   //   for (unsigned long rowIndex=0;rowIndex<results.getRowCount();rowIndex++ ) {
@@ -509,12 +513,14 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
 
         optohybrid->setHDMISBitSource(sbitSources);
 
+
         std::vector<std::pair<uint8_t,uint32_t> > chipIDs = optohybrid->getConnectedVFATs();
 
         for (auto chip = chipIDs.begin(); chip != chipIDs.end(); ++chip)
           if (chip->second)
             INFO("VFAT found in GEB slot " << std::setw(2) << (int)chip->first << " has ChipID "
                  << "0x" << std::hex << std::setw(4) << chip->second << std::dec);
+	         gem::hw::vfat::HwVFAT2& vfatDevice = optohybrid->getVFATDevice(chip->first);
           else
             INFO("No VFAT found in GEB slot " << std::setw(2) << (int)chip->first);
 
