@@ -436,6 +436,9 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   DBtoVFAT.getVFATparamfromDB(vfatparam,VFAT2ParamDB);
 
 
+  DEBUG(" Latency from DB    "<<vfatparam.latency);
+  
+
   // std::vector<std::string> columns=GEMDBObj.getColumns();
   //   for (unsigned long rowIndex=0;rowIndex<results.getRowCount();rowIndex++ ) {
   //     //      if(results.getValueAt(rowIndex,"VFAT")->toString() == myParameter_.toString()){
@@ -455,10 +458,7 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   //   *out << "</div>" << std::endl;
   //   *out << cgicc::br()<< std::endl;
   //   *out << cgicc::hr()<< std::endl;    
-    
   
-
-    
   DEBUG("OptoHybridManager::configureAction");
   //will the manager operate for all connected optohybrids, or only those connected to certain GLIBs?
   for (unsigned slot = 0; slot < MAX_AMCS_PER_CRATE; ++slot) {
@@ -468,16 +468,16 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
       unsigned int index = (slot*MAX_OPTOHYBRIDS_PER_AMC)+link;
       DEBUG("OptoHybridManager::index = " << index);
       OptoHybridInfo& info = m_optohybridInfo[index].bag;
-
+      
       DEBUG("OptoHybridManager::configureAction::info is: " << info.toString());
       if (!info.present)
         continue;
-
+      
       DEBUG("OptoHybridManager::configureAction::grabbing pointer to hardware device");
       optohybrid_shared_ptr optohybrid = m_optohybrids.at(slot).at(link);
-
+      
       if (optohybrid->isHwConnected()) {
-
+	
         DEBUG("OptoHybridManager::configureAction::setting trigger source to 0x"
              << std::hex << info.triggerSource.value_ << std::dec);
         optohybrid->setTrigSource(info.triggerSource.value_);
