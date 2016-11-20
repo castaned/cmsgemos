@@ -7,6 +7,12 @@
 #include "xdaq/WebApplication.h"
 #include "cgicc/HTMLClasses.h"
 
+
+#include <boost/algorithm/string.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/format.hpp>
+
+
 gem::utils::db::GEMDBtoVFATobj::GEMDBtoVFATobj()
 {
 }
