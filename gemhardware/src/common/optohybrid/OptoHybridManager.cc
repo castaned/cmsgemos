@@ -425,11 +425,11 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
     DEBUG("VFAT ID: "<<vfatid<<" VFAT slot "<<vfatslot);
   }
   
-  std::vector<std::string> columns=VFAT2ParamDB.getColumns();
-  for(std::vector<std::string>::iterator column=columns.begin(); column!=columns.end(); ++column){
-    std::string vfatconf=VFAT2ParamDB.getValueAt(1,*column)->toString();
-    DEBUG("VFAT CONFIG :"<<vfatconf);
-  }
+  // std::vector<std::string> columns=VFAT2ParamDB.getColumns();
+  // for(std::vector<std::string>::iterator column=columns.begin(); column!=columns.end(); ++column){
+  //   std::string vfatconf=VFAT2ParamDB.getValueAt(0,*column)->toString();
+  //   DEBUG("VFAT CONFIG :"<<vfatconf);
+  // }
 
   gem::hw::utils::GEMDBtoVFATobj DBtoVFAT;   // Database object
   
