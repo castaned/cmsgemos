@@ -66,4 +66,4 @@ export GEM_ADDRESS_TABLE_PATH=${BUILD_HOME}/${GEM_OS_PROJECT}/setup/etc/addresst
 export GEM_PYTHON_PATH=${BUILD_HOME}/${GEM_OS_PROJECT}/setup/scripts/python
 export PYTHONPATH=${GEM_PYTHON_PATH}:${PYTHONPATH}
 export PATH=${GEM_PYTHON_PATH}:${PATH}
-export TSTORE_XML=${BUILD_HOME}/gemhardware/xml/
+export TSTORE_XML=${BUILD_HOME}/cmsgemos/gemhardware/xml/
