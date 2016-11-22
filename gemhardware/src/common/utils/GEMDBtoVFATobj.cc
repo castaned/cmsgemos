@@ -25,23 +25,23 @@ gem::hw::utils::GEMDBtoVFATobj::~GEMDBtoVFATobj()
 void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2ControlParams &VFAT2Params, xdata::Table &VFATDB){ 
 
   
-  VFAT2Params.trigMode  = gem::hw::vfat::StringToTriggerMode.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR0_TRGMODE")->toString()));
-  VFAT2Params.msPol     =  gem::hw::vfat::StringToMSPolarity.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR0_MSPOLARITY")->toString()));
-  VFAT2Params.calPol    = gem::hw::vfat::StringToCalPolarity.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR0_CALPOLARITY")->toString()));
-  VFAT2Params.calibMode = gem::hw::vfat::StringToCalibrationMode.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR0_CALMODE")->toString()));
+  VFAT2Params.trigMode  = gem::hw::vfat::StringToTriggerMode.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR0_TRGMODE")->toString()));
+  VFAT2Params.msPol     =  gem::hw::vfat::StringToMSPolarity.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR0_MSPOLARITY")->toString()));
+  VFAT2Params.calPol    = gem::hw::vfat::StringToCalPolarity.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR0_CALPOLARITY")->toString()));
+  VFAT2Params.calibMode = gem::hw::vfat::StringToCalibrationMode.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR0_CALMODE")->toString()));
   
-  VFAT2Params.dacMode    = gem::hw::vfat::StringToDACMode.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR1_DACSELECT")->toString()));
-  VFAT2Params.probeMode  = gem::hw::vfat::StringToProbeMode.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR1_PROBEMODE")->toString()));
-  VFAT2Params.lvdsMode   = gem::hw::vfat::StringToLVDSPowerSave.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR1_LVDSPWRSAV")->toString()));
-  VFAT2Params.reHitCT    = gem::hw::vfat::StringToReHitCT.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR1_REHITCT")->toString()));
+  VFAT2Params.dacMode    = gem::hw::vfat::StringToDACMode.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR1_DACSELECT")->toString()));
+  VFAT2Params.probeMode  = gem::hw::vfat::StringToProbeMode.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR1_PROBEMODE")->toString()));
+  VFAT2Params.lvdsMode   = gem::hw::vfat::StringToLVDSPowerSave.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR1_LVDSPWRSAV")->toString()));
+  VFAT2Params.reHitCT    = gem::hw::vfat::StringToReHitCT.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR1_REHITCT")->toString()));
   
-  VFAT2Params.hitCountMode = gem::hw::vfat::StringToHitCountMode.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR2_HITCNTSEL")->toString()));
-  VFAT2Params.msPulseLen   = gem::hw::vfat::StringToMSPulseLength.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR2_MSPLSLEN")->toString()));
-  VFAT2Params.digInSel     = gem::hw::vfat::StringToDigInSel.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR2_DIGINSEL")->toString()));
+  VFAT2Params.hitCountMode = gem::hw::vfat::StringToHitCountMode.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR2_HITCNTSEL")->toString()));
+  VFAT2Params.msPulseLen   = gem::hw::vfat::StringToMSPulseLength.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR2_MSPLSLEN")->toString()));
+  VFAT2Params.digInSel     = gem::hw::vfat::StringToDigInSel.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR2_DIGINSEL")->toString()));
   
-  VFAT2Params.trimDACRange = gem::hw::vfat::StringToTrimDACRange.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR3_TRIMDACRNG")->toString()));
-  VFAT2Params.padBandGap   = gem::hw::vfat::StringToPbBG.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR3_PB_BNDGAP")->toString()));
-  VFAT2Params.sendTestPattern = gem::hw::vfat::StringToDFTestPattern.at(boost::to_upper_copy(VFATDB.getValueAt(1,"CR3_DFTST")->toString()));
+  VFAT2Params.trimDACRange = gem::hw::vfat::StringToTrimDACRange.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR3_TRIMDACRNG")->toString()));
+  VFAT2Params.padBandGap   = gem::hw::vfat::StringToPbBG.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR3_PB_BNDGAP")->toString()));
+  VFAT2Params.sendTestPattern = gem::hw::vfat::StringToDFTestPattern.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR3_DFTST")->toString()));
   
   //====== Convertion from xdata::Serializable to int then uint8_t
   unsigned long rowIndex=0;
