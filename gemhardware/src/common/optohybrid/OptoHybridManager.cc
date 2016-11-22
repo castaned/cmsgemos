@@ -412,13 +412,12 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   xdata::Table GEBParamDB; 
   GEMDBObj.SetView(responseInfoGEB,GEBParamDB);
   
-  // xoap::MessageReference disconnectmsgVFAT = GEMDBObj.disconnectmsg(connectionIDVFAT); // disconnect from DB
-  // sendSOAPMessage(disconnectmsgVFAT);
+  xoap::MessageReference disconnectmsgVFAT = GEMDBObj.disconnectmsg(connectionIDVFAT); // disconnect from DB
+  sendSOAPMessage(disconnectmsgVFAT);
 
-  // xoap::MessageReference disconnectmsgGEB = GEMDBObj.disconnectmsg(connectionIDGEB); // disconnect from DB
-  // sendSOAPMessage(disconnectmsgGEB);
+  xoap::MessageReference disconnectmsgGEB = GEMDBObj.disconnectmsg(connectionIDGEB); // disconnect from DB
+  sendSOAPMessage(disconnectmsgGEB);
   
-
   DEBUG(" Disconnected from DB, information stored in xdata::Tables");
   DEBUG(" row counting for VFATs in GEB :"<<GEBParamDB.getRowCount());
   
@@ -428,18 +427,18 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
     DEBUG("VFAT ID: "<<vfatid<<" VFAT slot "<<vfatslot);
   }
   
-  // std::vector<std::string> columns=VFAT2ParamDB.getColumns();
-  // for(std::vector<std::string>::iterator column=columns.begin(); column!=columns.end(); ++column){
-  //   std::string vfatconf=VFAT2ParamDB.getValueAt(0,*column)->toString();
-  //   DEBUG("VFAT CONFIG :"<<vfatconf);
-  // }
+  std::vector<std::string> columns=VFAT2ParamDB.getColumns();
+  for(std::vector<std::string>::iterator column=columns.begin(); column!=columns.end(); ++column){
+    std::string vfatconf=VFAT2ParamDB.getValueAt(0,*column)->toString();
+    DEBUG("VFAT CONFIG :"<<vfatconf);
+  }
 
-  gem::hw::utils::GEMDBtoVFATobj DBtoVFAT;   // Database object
+  // gem::hw::utils::GEMDBtoVFATobj DBtoVFAT;   // Database object
   
-  DBtoVFAT.getVFATparamfromDB(vfatparam,VFAT2ParamDB);
+  // DBtoVFAT.getVFATparamfromDB(vfatparam,VFAT2ParamDB);
 
 
-  DEBUG(" Latency from DB    "<<vfatparam.latency);
+  // DEBUG(" Latency from DB    "<<vfatparam.latency);
   
 
   // std::vector<std::string> columns=GEMDBObj.getColumns();
