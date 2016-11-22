@@ -418,6 +418,9 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   xoap::MessageReference disconnectmsgGEB = GEMDBObj.disconnectmsg(connectionIDGEB); // disconnect from DB
   sendSOAPMessage(disconnectmsgGEB);
 
+
+  DEBUG(" Disconnected from DB, information stored in xdata::Tables");
+  DEBUG(" row counting for VFATs in GEB :"<<GEBParamDB.getRowCount());
   
   for(unsigned long rowIndex=0;rowIndex<GEBParamDB.getRowCount();rowIndex++){
     std::string vfatid=GEBParamDB.getValueAt(rowIndex,"VFAT")->toString();
