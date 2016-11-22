@@ -90,7 +90,7 @@ xoap::MessageReference gem::utils::db::GEMDBAccess::disconnectmsg(const std::str
    request.addTStoreParameter("connectionID",connectionID);
    
    //for an SQLView, the name parameter refers to the name of a query section in the configuration
-   request.addViewSpecificParameter("name","VFAT2Settings");
+   request.addViewSpecificParameter("name",viewname);
    
    xoap::MessageReference message=request.toSOAP();
 
