@@ -437,7 +437,7 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   
   DBtoVFAT.getVFATparamfromDB(vfatparam,VFAT2ParamDB);
 
-  INFO(" Latency from DB    "<<vfatparam.latency);
+  //  INFO(" Latency from DB    "<<vfatparam.latency);
   
   
   // std::vector<std::string> columns=GEMDBObj.getColumns();
