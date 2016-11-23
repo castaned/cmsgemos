@@ -25,7 +25,7 @@ gem::hw::utils::GEMDBtoVFATobj::~GEMDBtoVFATobj()
 void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2ControlParams &VFAT2Params, xdata::Table &VFATDB){ 
 
 
-  INFO("Enter getVFATParamfromDB");
+  std::cout<<"Enter getVFATParamfromDB"<<std::endl;
   
   VFAT2Params.trigMode  = gem::hw::vfat::StringToTriggerMode.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR0_TRGMODE")->toString()));
   VFAT2Params.msPol     =  gem::hw::vfat::StringToMSPolarity.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR0_MSPOLARITY")->toString()));
