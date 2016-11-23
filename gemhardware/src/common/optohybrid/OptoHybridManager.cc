@@ -437,7 +437,6 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   
   DBtoVFAT.getVFATparamfromDB(vfatparam,VFAT2ParamDB);
 
-
   INFO(" Latency from DB    "<<vfatparam.latency);
   
   
