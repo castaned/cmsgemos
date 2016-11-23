@@ -418,19 +418,19 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   xoap::MessageReference disconnectmsgGEB = GEMDBObj.disconnectmsg(connectionIDGEB); // disconnect from DB
   sendSOAPMessage(disconnectmsgGEB);
   
-  DEBUG(" Disconnected from DB, information stored in xdata::Tables");
-  DEBUG(" row counting for VFATs in GEB :"<<GEBParamDB.getRowCount());
+  INFO(" Disconnected from DB, information stored in xdata::Tables");
+  INFO(" row counting for VFATs in GEB :"<<GEBParamDB.getRowCount());
   
   for(unsigned long rowIndex=0;rowIndex<GEBParamDB.getRowCount();rowIndex++){
     std::string vfatid=GEBParamDB.getValueAt(rowIndex,"VFAT")->toString();
     std::string vfatslot=GEBParamDB.getValueAt(rowIndex,"VFAT_POSN")->toString();
-    DEBUG("VFAT ID: "<<vfatid<<" VFAT slot "<<vfatslot);
+    INFO("VFAT ID: "<<vfatid<<" VFAT slot "<<vfatslot);
   }
   
   std::vector<std::string> columns=VFAT2ParamDB.getColumns();
   for(std::vector<std::string>::iterator column=columns.begin(); column!=columns.end(); ++column){
     std::string vfatconf=VFAT2ParamDB.getValueAt(0,*column)->toString();
-    DEBUG("VFAT CONFIG :"<<vfatconf);
+    INFO("VFAT CONFIG :"<<vfatconf);
   }
 
   // gem::hw::utils::GEMDBtoVFATobj DBtoVFAT;   // Database object
