@@ -440,7 +440,7 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
 
   // DEBUG(" Latency from DB    "<<vfatparam.latency);
   
-
+  
   // std::vector<std::string> columns=GEMDBObj.getColumns();
   //   for (unsigned long rowIndex=0;rowIndex<results.getRowCount();rowIndex++ ) {
   //     //      if(results.getValueAt(rowIndex,"VFAT")->toString() == myParameter_.toString()){
