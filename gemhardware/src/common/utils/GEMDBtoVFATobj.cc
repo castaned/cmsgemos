@@ -45,7 +45,7 @@ void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2Cont
   VFAT2Params.padBandGap   = gem::hw::vfat::StringToPbBG.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR3_PB_BNDGAP")->toString()));
   VFAT2Params.sendTestPattern = gem::hw::vfat::StringToDFTestPattern.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR3_DFTST")->toString()));
 
-  INFO("Finishing the CR0...CR3  ");
+  std::cout<<"Finishing the CR0...CR3  "<<std::endl;
 
   
   //====== Convertion from xdata::Serializable to int then uint8_t
