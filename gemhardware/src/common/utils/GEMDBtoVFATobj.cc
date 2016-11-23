@@ -24,6 +24,8 @@ gem::hw::utils::GEMDBtoVFATobj::~GEMDBtoVFATobj()
 
 void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2ControlParams &VFAT2Params, xdata::Table &VFATDB){ 
 
+
+  INFO("Enter getVFATParamfromDB");
   
   VFAT2Params.trigMode  = gem::hw::vfat::StringToTriggerMode.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR0_TRGMODE")->toString()));
   VFAT2Params.msPol     =  gem::hw::vfat::StringToMSPolarity.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR0_MSPOLARITY")->toString()));
@@ -42,6 +44,9 @@ void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2Cont
   VFAT2Params.trimDACRange = gem::hw::vfat::StringToTrimDACRange.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR3_TRIMDACRNG")->toString()));
   VFAT2Params.padBandGap   = gem::hw::vfat::StringToPbBG.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR3_PB_BNDGAP")->toString()));
   VFAT2Params.sendTestPattern = gem::hw::vfat::StringToDFTestPattern.at(boost::to_upper_copy(VFATDB.getValueAt(0,"CR3_DFTST")->toString()));
+
+  INFO("Finishing the CR0...CR3  ");
+
   
   //====== Convertion from xdata::Serializable to int then uint8_t
   unsigned long rowIndex=0;
