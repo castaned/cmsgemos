@@ -56,7 +56,7 @@ void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2Cont
   xdata::Serializable* xds_BIASICOMP       = VFATDB.getValueAt(rowIndex,"BIAS_ICOMP");
   xdata::Serializable* xds_BIASLATENCY     = VFATDB.getValueAt(rowIndex,"BIAS_LATENCY");
   xdata::Serializable* xds_BIASVTHRESHOLD1 = VFATDB.getValueAt(rowIndex,"BIAS_VTHRESHOLD1");
-  xdata::Serializable* xds_BIASVTHRESHOLD2 = VFATDB.getValueAt(rowIndex,"BIAS_1VTHRESHOLD2");
+  xdata::Serializable* xds_BIASVTHRESHOLD2 = VFATDB.getValueAt(rowIndex,"BIAS_VTHRESHOLD2");
   
   VFAT2Params.latency = static_cast<uint8_t>(std::stoi(xds_BIASLATENCY->toString()));
   VFAT2Params.iPreampIn = static_cast<uint8_t>(std::stoi(xds_BIASIPREAMPIN->toString()));
