@@ -393,7 +393,7 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
 
   DEBUG("Accessing DB information");
   gem::utils::db::GEMDBAccess GEMDBObj;   // Database object
-
+  
   xoap::MessageReference ViewInfoVFAT = GEMDBObj.getViewInfo("VFAT2");  // view for VFAT2 config
   xoap::MessageReference ConnectionInfoVFAT = sendSOAPMessage(ViewInfoVFAT); 
   std::string connectionIDVFAT = GEMDBObj.connect(ConnectionInfoVFAT);
@@ -517,6 +517,24 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
         optohybrid->setHDMISBitSource(sbitSources);
 
 
+	// VFAT list from OH
+	m_vfatMapping.at(slot).at(link)   = m_optohybrids.at(slot).at(link)->getConnectedVFATs();
+        m_trackingMask.at(slot).at(link)  = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
+        m_broadcastList.at(slot).at(link) = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
+        m_sbitMask.at(slot).at(link)      = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
+
+        createOptoHybridInfoSpaceItems(is_optohybrids.at(slot).at(link), m_optohybrids.at(slot).at(link));
+        INFO("OptoHybridManager::ConfigureAction looping over created VFAT devices");
+        for (auto mapit = m_vfatMapping.at(slot).at(link).begin();
+             mapit != m_vfatMapping.at(slot).at(link).end(); ++mapit) {
+          INFO("OptoHybridManager::initializeAction VFAT" << (int)mapit->first << " has chipID "
+               << std::hex << (int)mapit->second << std::dec << " (from map)");
+          gem::hw::vfat::HwVFAT2& vfatDevice = m_optohybrids.at(slot).at(link)->getVFATDevice(mapit->first);
+          INFO("OptoHybridManager::initializeAction VFAT" << (int)mapit->first << " has chipID "
+               << std::hex << (int)vfatDevice.getChipID() << std::dec << " (from HW device) ");
+        }
+
+	
         std::vector<std::pair<uint8_t,uint32_t> > chipIDs = optohybrid->getConnectedVFATs();
 
         for (auto chip = chipIDs.begin(); chip != chipIDs.end(); ++chip)
@@ -525,10 +543,10 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
                  << "0x" << std::hex << std::setw(4) << chip->second << std::dec);
           else
             INFO("No VFAT found in GEB slot " << std::setw(2) << (int)chip->first);
-
+	
         uint32_t vfatMask = m_broadcastList.at(slot).at(link);
         INFO("Setting VFAT parameters with broadcast write using mask " << std::hex << vfatMask << std::dec);
-
+	
 	if (m_scanType.value_ == 2) {
 	  INFO("OptoHybridManager::configureAction configureAction: FIRST Latency  " << m_scanMin.value_);
 	  optohybrid->setVFATsToDefaults(info.commonVFATSettings.bag.VThreshold1.value_,
