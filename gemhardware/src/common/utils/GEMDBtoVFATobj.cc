@@ -22,13 +22,13 @@ gem::hw::utils::GEMDBtoVFATobj::~GEMDBtoVFATobj()
 }
 
 
-void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2ControlParams &VFAT2Params, xdata::Table &VFATDB, bool_t default){ 
+void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2ControlParams &VFAT2Params, xdata::Table &VFATDB, xdata::string mode){ 
 
 
   std::cout<<"Enter getVFATParamfromDB"<<std::endl;
 
   unsigned long rowIndex=0;
-  if(!default){
+  if(mode=="default"){
   VFAT2Params.trigMode  = gem::hw::vfat::StringToTriggerMode.at(boost::to_upper_copy(VFATDB.getValueAt(rowIndex,"CR0_TRGMODE")->toString()));
   VFAT2Params.msPol     =  gem::hw::vfat::StringToMSPolarity.at(boost::to_upper_copy(VFATDB.getValueAt(rowIndex,"CR0_MSPOLARITY")->toString()));
   VFAT2Params.calPol    = gem::hw::vfat::StringToCalPolarity.at(boost::to_upper_copy(VFATDB.getValueAt(rowIndex,"CR0_CALPOLARITY")->toString()));
@@ -81,7 +81,7 @@ void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2Cont
   xdata::Serializable* xds_BIASVTHRESHOLD1 = VFATDB.getValueAt(rowIndex,"BIAS_VTHRESHOLD1");
   xdata::Serializable* xds_BIASVTHRESHOLD2 = VFATDB.getValueAt(rowIndex,"BIAS_VTHRESHOLD2");
 
-  if(!default){
+  if(mode=="default"){
   VFAT2Params.latency = static_cast<uint8_t>(std::stoi(xds_BIASLATENCY->toString()));
   VFAT2Params.iPreampIn = static_cast<uint8_t>(std::stoi(xds_BIASIPREAMPIN->toString()));
   VFAT2Params.iPreampFeed = static_cast<uint8_t>(std::stoi(xds_BIASIPREAMPFEED->toString()));
