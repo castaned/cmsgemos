@@ -532,6 +532,7 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
           gem::hw::vfat::HwVFAT2& vfatDevice = m_optohybrids.at(slot).at(link)->getVFATDevice(mapit->first);
           INFO("OptoHybridManager::initializeAction VFAT" << (int)mapit->first << " has chipID "
                << std::hex << (int)vfatDevice.getChipID() << std::dec << " (from HW device) ");
+	  vfatDevice.setAllSettings(vfatparam);
         }
 
 	
