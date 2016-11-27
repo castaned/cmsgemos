@@ -6,7 +6,6 @@
 #include "xgi/Method.h"
 #include "xdaq/WebApplication.h"
 #include "cgicc/HTMLClasses.h"
-#include "xdata/String.h"
 
 
 #include <boost/algorithm/string.hpp>

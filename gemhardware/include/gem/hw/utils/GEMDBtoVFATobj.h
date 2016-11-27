@@ -17,6 +17,7 @@
 
 #include "gem/hw/vfat/exception/Exception.h"
 
+#include "xdata/String.h"
 
 namespace gem {
   namespace hw {
@@ -30,7 +31,7 @@ namespace gem {
 	GEMDBtoVFATobj();
 	~GEMDBtoVFATobj();
 
-	void getVFATparamfromDB(gem::hw::vfat::VFAT2ControlParams &params, xdata::Table &vfatdb);
+	void getVFATparamfromDB(gem::hw::vfat::VFAT2ControlParams &params, xdata::Table &vfatdb, xdata::String &mode);
 
 	
       protected:
