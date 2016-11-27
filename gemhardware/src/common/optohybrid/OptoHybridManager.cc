@@ -439,8 +439,8 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   
   DBtoVFAT.getVFATparamfromDB(vfatparam,VFAT2ParamDB,mode);
 
-  INFO(" trigger Mode from DB    "<<vfatparam.trigMode);
-  INFO(" latency Mode from DB    "<<(int)vfatparam.latency);
+  INFO(" trigger Mode from DB or default mode  "<<vfatparam.trigMode);
+  INFO(" latency Mode from DB or default mode   "<<(int)vfatparam.latency);
   
   
   // std::vector<std::string> columns=GEMDBObj.getColumns();
@@ -520,13 +520,13 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
 
 
 	// VFAT list from OH
-	m_vfatMapping.at(slot).at(link)   = m_optohybrids.at(slot).at(link)->getConnectedVFATs();
-        m_trackingMask.at(slot).at(link)  = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
-        m_broadcastList.at(slot).at(link) = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
-        m_sbitMask.at(slot).at(link)      = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
+	// m_vfatMapping.at(slot).at(link)   = m_optohybrids.at(slot).at(link)->getConnectedVFATs();
+        // m_trackingMask.at(slot).at(link)  = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
+        // m_broadcastList.at(slot).at(link) = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
+        // m_sbitMask.at(slot).at(link)      = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
 
-        createOptoHybridInfoSpaceItems(is_optohybrids.at(slot).at(link), m_optohybrids.at(slot).at(link));
-        INFO("OptoHybridManager::ConfigureAction looping over created VFAT devices");
+        // createOptoHybridInfoSpaceItems(is_optohybrids.at(slot).at(link), m_optohybrids.at(slot).at(link));
+	INFO("OptoHybridManager::ConfigureAction looping over created VFAT devices");
         for (auto mapit = m_vfatMapping.at(slot).at(link).begin();
              mapit != m_vfatMapping.at(slot).at(link).end(); ++mapit) {
           INFO("OptoHybridManager::initializeAction VFAT" << (int)mapit->first << " has chipID "
@@ -537,7 +537,6 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
 	  vfatDevice.setAllSettings(vfatparam);
         }
 
-	
         std::vector<std::pair<uint8_t,uint32_t> > chipIDs = optohybrid->getConnectedVFATs();
 
         for (auto chip = chipIDs.begin(); chip != chipIDs.end(); ++chip)
