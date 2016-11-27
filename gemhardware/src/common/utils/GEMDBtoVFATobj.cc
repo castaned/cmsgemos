@@ -22,7 +22,7 @@ gem::hw::utils::GEMDBtoVFATobj::~GEMDBtoVFATobj()
 }
 
 
-void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2ControlParams &VFAT2Params, xdata::Table &VFATDB, xdata::String mode){ 
+void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2ControlParams &VFAT2Params, xdata::Table &VFATDB, xdata::String &mode){ 
 
 
   std::cout<<"Enter getVFATParamfromDB"<<std::endl;
