@@ -435,7 +435,7 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
 
   gem::hw::utils::GEMDBtoVFATobj DBtoVFAT;   // Declaration DB string to VFAT obj
 
-  xdata::String mode="default";
+  xdata::String mode="default"; // if not "default" it takes values from DB
   
   DBtoVFAT.getVFATparamfromDB(vfatparam,VFAT2ParamDB,mode);
 
