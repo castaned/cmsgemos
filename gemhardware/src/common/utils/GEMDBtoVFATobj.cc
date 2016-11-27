@@ -48,23 +48,23 @@ void gem::hw::utils::GEMDBtoVFATobj::getVFATparamfromDB(gem::hw::vfat::VFAT2Cont
   VFAT2Params.sendTestPattern = gem::hw::vfat::StringToDFTestPattern.at(boost::to_upper_copy(VFATDB.getValueAt(rowIndex,"CR3_DFTST")->toString()));
   }
   else{
-    VFAT2Params.trigMode  = gem::hw::vfat::StringToTriggerMode.at(boost::to_upper_copy("GEMMODE"));
-    VFAT2Params.msPol     =  gem::hw::vfat::StringToMSPolarity.at(boost::to_upper_copy("NEGATIVE"));
-    VFAT2Params.calPol    = gem::hw::vfat::StringToCalPolarity.at(boost::to_upper_copy("NEGATIVE"));
-    VFAT2Params.calibMode = gem::hw::vfat::StringToCalibrationMode.at(boost::to_upper_copy("NORMAL"));
+    VFAT2Params.trigMode  = gem::hw::vfat::StringToTriggerMode.at("GEMMODE");
+    VFAT2Params.msPol     =  gem::hw::vfat::StringToMSPolarity.at("NEGATIVE");
+    VFAT2Params.calPol    = gem::hw::vfat::StringToCalPolarity.at("NEGATIVE");
+    VFAT2Params.calibMode = gem::hw::vfat::StringToCalibrationMode.at("NORMAL");
     
-    VFAT2Params.dacMode    = gem::hw::vfat::StringToDACMode.at(boost::to_upper_copy("OFF"));
-    VFAT2Params.probeMode  = gem::hw::vfat::StringToProbeMode.at(boost::to_upper_copy("OFF"));
-    VFAT2Params.lvdsMode   = gem::hw::vfat::StringToLVDSPowerSave.at(boost::to_upper_copy("OFF"));
-    VFAT2Params.reHitCT    = gem::hw::vfat::StringToReHitCT.at(boost::to_upper_copy("6.4MICROSEC"));
+    VFAT2Params.dacMode    = gem::hw::vfat::StringToDACMode.at("OFF");
+    VFAT2Params.probeMode  = gem::hw::vfat::StringToProbeMode.at("OFF");
+    VFAT2Params.lvdsMode   = gem::hw::vfat::StringToLVDSPowerSave.at("OFF");
+    VFAT2Params.reHitCT    = gem::hw::vfat::StringToReHitCT.at("6.4MICROSEC");
     
-    VFAT2Params.hitCountMode = gem::hw::vfat::StringToHitCountMode.at(boost::to_upper_copy("FASTOR"));
-    VFAT2Params.msPulseLen   = gem::hw::vfat::StringToMSPulseLength.at(boost::to_upper_copy("3"));
-    VFAT2Params.digInSel     = gem::hw::vfat::StringToDigInSel.at(boost::to_upper_copy("DIGIP"));
+    VFAT2Params.hitCountMode = gem::hw::vfat::StringToHitCountMode.at("FASTOR");
+    VFAT2Params.msPulseLen   = gem::hw::vfat::StringToMSPulseLength.at("3");
+    VFAT2Params.digInSel     = gem::hw::vfat::StringToDigInSel.at("DIGIP");
     
-    VFAT2Params.trimDACRange = gem::hw::vfat::StringToTrimDACRange.at(boost::to_upper_copy("0"));
-    VFAT2Params.padBandGap   = gem::hw::vfat::StringToPbBG.at(boost::to_upper_copy("OFF"));
-    VFAT2Params.sendTestPattern = gem::hw::vfat::StringToDFTestPattern.at(boost::to_upper_copy("OFF"));
+    VFAT2Params.trimDACRange = gem::hw::vfat::StringToTrimDACRange.at("0");
+    VFAT2Params.padBandGap   = gem::hw::vfat::StringToPbBG.at("OFF");
+    VFAT2Params.sendTestPattern = gem::hw::vfat::StringToDFTestPattern.at("OFF");
   }
   
 
