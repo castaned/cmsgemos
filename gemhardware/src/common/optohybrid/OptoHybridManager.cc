@@ -571,34 +571,34 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
         uint32_t vfatMask = m_broadcastList.at(slot).at(link);
         INFO("Setting VFAT parameters with broadcast write using mask " << std::hex << vfatMask << std::dec);
 	
-	// if (m_scanType.value_ == 2) {
-	//   INFO("OptoHybridManager::configureAction configureAction: FIRST Latency  " << m_scanMin.value_);
-	//   optohybrid->setVFATsToDefaults(info.commonVFATSettings.bag.VThreshold1.value_,
-        //                                  info.commonVFATSettings.bag.VThreshold2.value_,
-        //                                  m_scanMin.value_, vfatMask);
-        //   // HACK
-        //   // have to enable the pulse to the channel if using cal pulse latency scan
-        //   // but shouldn't mess with other settings... not possible here, so just a hack
-        //   optohybrid->broadcastWrite("VFATChannels.ChanReg23",  0x40, vfatMask);
-        //   optohybrid->broadcastWrite("VFATChannels.ChanReg124", 0x40, vfatMask);
-        //   optohybrid->broadcastWrite("VFATChannels.ChanReg65",  0x40, vfatMask);
-        //   optohybrid->broadcastWrite("VCal",                    0xaf, vfatMask);
-	// } else if (m_scanType.value_ == 3) {
-	//   uint32_t initialVT1 = m_scanMin.value_;
-	//   //	  uint32_t VT1 = (m_scanMax.value_ - m_scanMin.value_);
-	//   uint32_t initialVT2 = 0; //std::max(0,(uint32_t)m_scanMax.value_);
-	//   INFO("OptoHybridManager::configureAction FIRST VT1 " << initialVT1 << " VT2 " << initialVT2);
-	//   optohybrid->setVFATsToDefaults( initialVT1, initialVT2, info.commonVFATSettings.bag.Latency.value_, vfatMask);
-	// } else {
-	//	  optohybrid->setVFATsToDefaults(info.commonVFATSettings.bag.VThreshold1.value_,
-	//				 info.commonVFATSettings.bag.VThreshold2.value_,
-	//					 info.commonVFATSettings.bag.Latency.value_,
-	//					 vfatMask);
-	  optohybrid->setVFATsToDefaults(vfatparam.vThresh1,
-					 vfatparam.vThresh2,
-					 vfatparam.latency,
-					 vfatMask);
-	  //	}
+	if (m_scanType.value_ == 2) {
+	  INFO("OptoHybridManager::configureAction configureAction: FIRST Latency  " << m_scanMin.value_);
+	  optohybrid->setVFATsToDefaults(info.commonVFATSettings.bag.VThreshold1.value_,
+                                         info.commonVFATSettings.bag.VThreshold2.value_,
+                                         m_scanMin.value_, vfatMask);
+          // HACK
+          // have to enable the pulse to the channel if using cal pulse latency scan
+          // but shouldn't mess with other settings... not possible here, so just a hack
+          optohybrid->broadcastWrite("VFATChannels.ChanReg23",  0x40, vfatMask);
+          optohybrid->broadcastWrite("VFATChannels.ChanReg124", 0x40, vfatMask);
+          optohybrid->broadcastWrite("VFATChannels.ChanReg65",  0x40, vfatMask);
+          optohybrid->broadcastWrite("VCal",                    0xaf, vfatMask);
+	} else if (m_scanType.value_ == 3) {
+	  uint32_t initialVT1 = m_scanMin.value_;
+	  //	  uint32_t VT1 = (m_scanMax.value_ - m_scanMin.value_);
+	  uint32_t initialVT2 = 0; //std::max(0,(uint32_t)m_scanMax.value_);
+	  INFO("OptoHybridManager::configureAction FIRST VT1 " << initialVT1 << " VT2 " << initialVT2);
+	  optohybrid->setVFATsToDefaults( initialVT1, initialVT2, info.commonVFATSettings.bag.Latency.value_, vfatMask);
+	} else {
+		  optohybrid->setVFATsToDefaults(info.commonVFATSettings.bag.VThreshold1.value_,
+					 info.commonVFATSettings.bag.VThreshold2.value_,
+						 info.commonVFATSettings.bag.Latency.value_,
+						 vfatMask);
+	  // optohybrid->setVFATsToDefaults(vfatparam.vThresh1,
+	  // 				 vfatparam.vThresh2,
+	  // 				 vfatparam.latency,
+	  // 				 vfatMask);
+	}
 
 	std::array<std::string, 11> setupregs = {{"ContReg0", "ContReg2", "IPreampIn", "IPreampFeed", "IPreampOut",
 						  "IShaper", "IShaperFeed", "IComp", "Latency",
