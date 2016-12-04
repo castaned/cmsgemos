@@ -435,12 +435,34 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
 
   gem::hw::utils::GEMDBtoVFATobj DBtoVFAT;   // Declaration DB string to VFAT obj
 
-  xdata::String mode="default"; // if not "default" it takes values from DB
+  //  xdata::String mode="default"; 
+  xdata::String mode="DB"; // if not "default" it takes values from DB
   
   DBtoVFAT.getVFATparamfromDB(vfatparam,VFAT2ParamDB,mode);
 
-  INFO(" trigger Mode from DB or default mode  "<<vfatparam.trigMode);
-  INFO(" latency Mode from DB or default mode   "<<(int)vfatparam.latency);
+  INFO(" triggerMode from DB or default mode  "<<vfatparam.trigMode);
+  INFO(" msPol  from DB or default mode  "<<vfatparam.msPol);
+  INFO(" calPol from DB or default mode  "<<vfatparam.calPol);
+  INFO(" calibMode from DB or default mode  "<<vfatparam.calibMode);
+  INFO(" dacMode   from DB or default mode  "<<vfatparam.dacMode);
+  INFO(" probeMode from DB or default mode  "<<vfatparam.probeMode);
+  INFO(" lvdsMode  from DB or default mode  "<<vfatparam.lvdsMode);
+  INFO(" reHitCT   from DB or default mode  "<<vfatparam.reHitCT);
+  INFO(" hitCountMode from DB or default mode  "<<vfatparam.hitCountMode);
+  INFO(" msPulseLen   from DB or default mode  "<<vfatparam.msPulseLen);
+  INFO(" digInSel     from DB or default mode  "<<vfatparam.digInSel);
+  INFO(" trimDACRange from DB or default mode  "<<vfatparam.trimDACRange);
+  INFO(" padBandGap   from DB or default mode  "<<vfatparam.padBandGap);
+  INFO(" sendTestPattern from DB or default mode  "<<vfatparam.sendTestPattern);
+
+  INFO(" latency     from DB or default mode   "<<(int)vfatparam.latency);
+  INFO(" iPreampIn   from DB or default mode   "<<(int)vfatparam.iPreampIn);
+  INFO(" iPreampFeed from DB or default mode   "<<(int)vfatparam.iPreampFeed);
+  INFO(" iPreampOut  from DB or default mode   "<<(int)vfatparam.iPreampOut);
+  INFO(" iShaper     from DB or default mode   "<<(int)vfatparam.iShaper);
+  INFO(" iComp       from DB or default mode   "<<(int)vfatparam.iComp);
+  INFO(" vThresh1    from DB or default mode   "<<(int)vfatparam.vThresh1);
+  INFO(" vThresh2    from DB or default mode   "<<(int)vfatparam.vThresh2);
   
   
   // std::vector<std::string> columns=GEMDBObj.getColumns();
