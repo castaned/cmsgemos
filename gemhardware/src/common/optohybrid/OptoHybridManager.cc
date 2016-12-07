@@ -424,7 +424,7 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
   for(unsigned long rowIndex=0;rowIndex<GEBParamDB.getRowCount();rowIndex++){
     std::string vfatid=GEBParamDB.getValueAt(rowIndex,"VFAT")->toString();
     std::string vfatslot=GEBParamDB.getValueAt(rowIndex,"VFAT_POSN")->toString();
-    INFO("VFAT ID: "<<vfatid<<" VFAT slot "<<vfatslot);
+    INFO("VFAT ID from DB :  "<<vfatid<<" VFAT slot from DB:   "<<vfatslot);
   }
   
   std::vector<std::string> columns=VFAT2ParamDB.getColumns();
@@ -556,6 +556,9 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
           gem::hw::vfat::HwVFAT2& vfatDevice = m_optohybrids.at(slot).at(link)->getVFATDevice(mapit->first);
           INFO("OptoHybridManager::initializeAction VFAT" << (int)mapit->first << " has chipID "
                << std::hex << (int)vfatDevice.getChipID() << std::dec << " (from HW device) ");
+
+	  INFO(" Chip ID integer to string  " << std::to_string( (int)vfatDevice.getChipID()));
+
 	  //	  vfatDevice.setAllSettings(vfatparam);
         }
 
