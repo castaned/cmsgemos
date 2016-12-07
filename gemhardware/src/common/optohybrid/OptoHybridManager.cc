@@ -557,8 +557,12 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
           INFO("OptoHybridManager::initializeAction VFAT" << (int)mapit->first << " has chipID "
                << std::hex << (int)vfatDevice.getChipID() << std::dec << " (from HW device) ");
 
-	  INFO(" Chip ID integer to string  " << std::to_string( (int)vfatDevice.getChipID()));
-
+	  for(unsigned long rowIndex=0;rowIndex<GEBParamDB.getRowCount();rowIndex++){
+	    std::string vfatid=GEBParamDB.getValueAt(rowIndex,"VFAT")->toString();
+	    std::string vfatslot=GEBParamDB.getValueAt(rowIndex,"VFAT_POSN")->toString();
+	    INFO("VFAT ID from HW :  "<< static_cast<string>( (int)vfatDevice.getChipID());
+	    INFO("VFAT ID from DB :  "<<vfatid<<" VFAT slot from DB:   "<<vfatslot);
+	  }
 	  //	  vfatDevice.setAllSettings(vfatparam);
         }
 
