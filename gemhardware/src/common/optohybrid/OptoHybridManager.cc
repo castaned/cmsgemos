@@ -546,15 +546,12 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
 
         optohybrid->setHDMISBitSource(sbitSources);
 
-
 	// VFAT list from OH
 	// m_vfatMapping.at(slot).at(link)   = m_optohybrids.at(slot).at(link)->getConnectedVFATs();
         // m_trackingMask.at(slot).at(link)  = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
         // m_broadcastList.at(slot).at(link) = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
         // m_sbitMask.at(slot).at(link)      = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
-
-
-
+	
         // createOptoHybridInfoSpaceItems(is_optohybrids.at(slot).at(link), m_optohybrids.at(slot).at(link));
 	INFO("OptoHybridManager::ConfigureAction looping over created VFAT devices");
         for (auto mapit = m_vfatMapping.at(slot).at(link).begin();
@@ -577,7 +574,7 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
 	    INFO("VFAT ID from DB strtol :  "<<vfatiddb);
 
 	    if( (int)vfatDevice.getChipID() == vfatiddb) {
-	      INFO("VFAT chip ID:  "<< (int)vfatDevice.getChipID()<<" found in DB ");
+	      INFO("VFAT chip ID:  "<< (int)vfatDevice.getChipID()<<" found in DB in slot :"<<vfatslot);
 	      vfatDevice.setAllSettings(vfatparam);
 	    }
 	    
