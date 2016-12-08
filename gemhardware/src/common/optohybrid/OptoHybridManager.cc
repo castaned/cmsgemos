@@ -425,6 +425,12 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
     std::string vfatid=GEBParamDB.getValueAt(rowIndex,"VFAT")->toString();
     std::string vfatslot=GEBParamDB.getValueAt(rowIndex,"VFAT_POSN")->toString();
     INFO("VFAT ID from DB :  "<<vfatid<<" VFAT slot from DB:   "<<vfatslot);
+    
+    const char *hexstring = vfatid.c_str();
+    int number = (int)strtol(hexstring,NULL,0);
+
+    INFO("VFAT ID from DB strtol :  "<<number);
+
   }
   
   std::vector<std::string> columns=VFAT2ParamDB.getColumns();
@@ -547,6 +553,8 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
         // m_broadcastList.at(slot).at(link) = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
         // m_sbitMask.at(slot).at(link)      = m_optohybrids.at(slot).at(link)->getConnectedVFATMask();
 
+
+
         // createOptoHybridInfoSpaceItems(is_optohybrids.at(slot).at(link), m_optohybrids.at(slot).at(link));
 	INFO("OptoHybridManager::ConfigureAction looping over created VFAT devices");
         for (auto mapit = m_vfatMapping.at(slot).at(link).begin();
@@ -557,13 +565,24 @@ void gem::hw::optohybrid::OptoHybridManager::configureAction()
           INFO("OptoHybridManager::initializeAction VFAT" << (int)mapit->first << " has chipID "
                << std::hex << (int)vfatDevice.getChipID() << std::dec << " (from HW device) ");
 
+
 	  for(unsigned long rowIndex=0;rowIndex<GEBParamDB.getRowCount();rowIndex++){
 	    std::string vfatid=GEBParamDB.getValueAt(rowIndex,"VFAT")->toString();
 	    std::string vfatslot=GEBParamDB.getValueAt(rowIndex,"VFAT_POSN")->toString();
-	    INFO("VFAT ID from HW :  "<< static_cast<string>( (int)vfatDevice.getChipID());
 	    INFO("VFAT ID from DB :  "<<vfatid<<" VFAT slot from DB:   "<<vfatslot);
+	    
+	    const char *hexstring = vfatid.c_str();
+	    int vfatiddb = (int)strtol(hexstring,NULL,0);
+	    
+	    INFO("VFAT ID from DB strtol :  "<<vfatiddb);
+
+	    if( (int)vfatDevice.getChipID() == vfatiddb) {
+	      INFO("VFAT chip ID:  "<< (int)vfatDevice.getChipID()<<" found in DB ");
+	      vfatDevice.setAllSettings(vfatparam);
+	    }
+	    
 	  }
-	  //	  vfatDevice.setAllSettings(vfatparam);
+	  
         }
 
         std::vector<std::pair<uint8_t,uint32_t> > chipIDs = optohybrid->getConnectedVFATs();
